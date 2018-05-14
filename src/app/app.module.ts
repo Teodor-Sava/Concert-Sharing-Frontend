@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import { HeaderComponent } from './core/components/header/header.component';
+import {HeaderComponent} from './modules/core/components/header/header.component';
 import {CoreModule} from './modules/core/core.module';
 
 
