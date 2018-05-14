@@ -1,13 +1,11 @@
-<div class="container">
-    <div class="card w-100">
-        <div class="card-header">
-
-        </div>
+<div class="card w-100">
+    <div class="container">
         <div class="card-body">
-            <h3>Login into you account to have access to the latest gigs</h3>
-            <form [formGroup]="registerForm"
+            <h3 class="text-center">Register an account to have access to the latest concerts</h3>
+            <form class="offset-2 col-8"
+                  [formGroup]="registerForm"
                   (keyup.enter)="onRegister(registerForm.value)"
-                  (ngSubmit)="onRegister(registerForm.value)">>
+                  (ngSubmit)="onRegister(registerForm.value)">
                 <div class="form-group">
                     <label class="form-check-label">Name</label>
                     <input formControlName="name" class="form-control">
@@ -25,4 +23,3 @@
         </div>
     </div>
 </div>
-

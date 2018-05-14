@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/css/typos";
+@import "assets/css/color";
 
 * {
   font-family: 'Roboto Mono', monospace;
@@ -6,4 +8,15 @@
 
 body {
   justify-content: center;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.authentication-button {
+  width: 20%;
+  border: none !important;
+  margin-left: 40%;
+  background-color: $hibiscus !important;
 }
