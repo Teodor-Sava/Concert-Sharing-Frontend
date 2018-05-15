@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {PaginationModule} from 'ngx-bootstrap/pagination';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: []
+    imports: [
+        CommonModule
+    ],
+    declarations: []
 })
-export class CoreModule { }
+export class CoreModule {
+}
