@@ -1,0 +1,15 @@
+@import "color";
+
+@mixin btn-color-hibiscus {
+  background-color: $hibiscus;
+}
+
+@mixin btn-radius {
+  border-radius: 6px !important;
+}
+
+.btn-concert-theme {
+  @include btn-color-hibiscus;
+  @include btn-radius ;
+  color: white;
+}
