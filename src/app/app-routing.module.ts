@@ -9,6 +9,10 @@ const routes: Routes = [
     {
         path: 'concerts',
         loadChildren: 'app/modules/concerts/concerts.module#ConcertsModule'
+    },
+    {
+        path: 'bands',
+        loadChildren: 'app/modules/bands/bands.module#BandsModule'
     }
 ];
 
