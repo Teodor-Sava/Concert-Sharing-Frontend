@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {PaginationModule} from 'ngx-bootstrap/pagination';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 @NgModule({
     imports: [
         CommonModule
     ],
-    declarations: []
+    declarations: [NotificationsComponent]
 })
 export class CoreModule {
 }

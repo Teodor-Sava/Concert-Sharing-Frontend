@@ -7,13 +7,25 @@ import {BandsDetailsComponent} from './components/bands-details/bands-details.co
 import {CreateBandComponent} from './components/create-band/create-band.component';
 import {EditBandComponent} from './components/edit-band/edit-band.component';
 import {BandConcertStatusComponent} from './components/band-concert-status/band-concert-status.component';
+import {BandConcertRequestsComponent} from './components/band-concert-requests/band-concert-requests.component';
+import {BandConcertHistoryComponent} from './components/band-concert-history/band-concert-history.component';
+import {BandsService} from './services/bands.service';
 
 @NgModule({
     imports: [
         CommonModule,
         BandsRoutingModule
     ],
-    declarations: [BandsComponent, BandsDetailsComponent, CreateBandComponent, EditBandComponent, BandConcertStatusComponent]
+    declarations: [BandsComponent,
+        BandsDetailsComponent,
+        CreateBandComponent,
+        EditBandComponent,
+        BandConcertStatusComponent,
+        BandConcertRequestsComponent,
+        BandConcertHistoryComponent],
+    providers: [
+        BandsService
+    ]
 })
 export class BandsModule {
 }

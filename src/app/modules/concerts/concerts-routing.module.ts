@@ -4,7 +4,7 @@ import {ConcertsComponent} from './components/concerts/concerts.component';
 import {ConcertDetailsComponent} from './components/concert-details/concert-details.component';
 import {CreateConcertComponent} from './components/create-concert/create-concert.component';
 import {EditConcertComponent} from './components/edit-concert/edit-concert.component';
-import {StatusConcertComponent} from './components/status-concert/status-concert.component';
+import {ConcertStatusComponent} from './components/concert-status/concert-status.component';
 
 const routes: Routes = [
     {
@@ -25,7 +25,7 @@ const routes: Routes = [
     },
     {
         path: 'status/id/:id',
-        component: StatusConcertComponent
+        component: ConcertStatusComponent
     }
 ];
 
