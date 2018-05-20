@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 import {BandsRoutingModule} from './bands-routing.module';
 import {BandsComponent} from './components/bands/bands.component';
 import {BandsDetailsComponent} from './components/bands-details/bands-details.component';
@@ -14,7 +16,8 @@ import {BandsService} from './services/bands.service';
 @NgModule({
     imports: [
         CommonModule,
-        BandsRoutingModule
+        BandsRoutingModule,
+        InfiniteScrollModule
     ],
     declarations: [BandsComponent,
         BandsDetailsComponent,
