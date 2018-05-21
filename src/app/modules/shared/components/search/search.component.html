@@ -1,13 +1,20 @@
 <section class="filter-wrapper">
     <div class="keyword-wrapper">
-        <input class="form-control" type="text" placeholder="Search for artists..." autofocus/>
+        <input class="form-control" [formControl]="queryField" type="text" placeholder="Search for artists..."
+               (focus)="showFilter = true"/>
     </div>
-    <ul class="filter-select">
-        <li class="filter-select-list"><img src="" alt="" width="50" height="50">
-            <p class="artist-name"></p>
-            <span class="tags"></span>
-        <li class="filter-select-list"> Hey hey</li>
-        <li class="filter-select-list"> Hey hey</li>
-        <li class="filter-select-list"> Hey hey</li>
-    </ul>
+    <ng-container *ngIf="showFilter">
+        <ul class="filter-select">
+            <ng-container *ngFor="let result of results; let index=index">
+                <li *ngIf="index<10" class="filter-select-list" (click)="navigateToRecord(result)"><img
+                        src="{{result.image_url}}"
+                        alt=""
+                        width="50" height="50">
+                    <p class="artist-name">
+                        {{result.name}}</p>
+            </ng-container>
+        </ul>
+    </ng-container>
 </section>
+<div>
+</div>
