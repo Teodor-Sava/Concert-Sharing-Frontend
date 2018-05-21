@@ -7,9 +7,10 @@ export interface Band {
     country: Country;
     genre: Genre;
     band_requests: string;
-    short_description: string,
-    long_description: string,
-    price: number,
+    short_description: string;
+    long_description: string;
+    price: number;
+    image_url: string;
     created_at: Date;
     updated_at: Date;
 }
