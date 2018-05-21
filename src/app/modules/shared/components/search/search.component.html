@@ -1,7 +1,7 @@
 <section class="filter-wrapper">
     <div class="keyword-wrapper">
         <input class="form-control" [formControl]="queryField" type="text" placeholder="Search for artists..."
-               (focus)="showFilter = true"/>
+               (focus)="getSearchData()"/>
     </div>
     <ng-container *ngIf="showFilter">
         <ul class="filter-select">

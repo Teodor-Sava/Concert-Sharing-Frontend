@@ -1,3 +1,80 @@
-<p>
-  create-band works!
-</p>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="row margin-bottom-20">
+                <div class="col-sm-4">
+                    <h3>Create Band</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <form [formGroup]="bandForm" class=" offset-1 col-sm-10">
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input class="form-control" formControlName="image_url" placeholder="Image Url">
+                        </div>
+                        <div class="col-sm-6">
+                            <img src="data:image/jpeg;base64,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">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="text" formControlName="name" class="form-control" placeholder="Name" id="name">
+                        </div>
+                        <div class="col-sm-6">
+                            <select [formControlName]="country" class="form-control">
+                                <option value="">Select Country</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" placeholder="Number of Members">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text"
+                                   placeholder="Founded At"
+                                   class="form-control"
+                                   bsDatepicker>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control"
+                                      placeholder="Write a short description about the band.."></textarea>
+                        </div>
+                        <div class="col-sm-6">
+                            <textarea type="text" class="form-control"
+                                      placeholder="Write a long description about the band.."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" placeholder="Band Price">
+                        </div>
+                        <div class="col-sm-6">
+                            <ng-select [items]="cities2"
+                                       bindLabel="name"
+                                       bindValue="id"
+                                       [multiple]="true"
+                                       placeholder="Select Genres">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <button class="btn cancel-button float-right"><i class="fas fa-times"></i> Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn create-button float-left"><i class="fas fa-check"></i> Create Band
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

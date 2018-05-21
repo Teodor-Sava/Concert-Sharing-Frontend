@@ -11,8 +11,8 @@ export interface Band {
     long_description: string;
     price: number;
     image_url: string;
-    created_at: Date;
-    updated_at: Date;
+    created_at?: Date;
+    updated_at?: Date;
 }
 
 export interface Country {

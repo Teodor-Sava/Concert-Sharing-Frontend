@@ -7,7 +7,7 @@
 
 .card-shadow {
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .card-shadow:hover {
@@ -19,6 +19,20 @@
 .margin-bottom-20 {
   margin-bottom: 20px;
 }
+
 .margin-bottom-40 {
   margin-bottom: 40px;
+
+}
+
+.card-img-overlay {
+  color: white;
+}
+
+.card {
+  padding: 10px;
+}
+
+.float-flex{
+  justify-content: flex-end;
 }

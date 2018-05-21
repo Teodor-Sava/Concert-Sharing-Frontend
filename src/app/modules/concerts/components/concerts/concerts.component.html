@@ -1,23 +1,24 @@
-<div class="container">
+<div class="container" infiniteScroll
+     [infiniteScrollDistance]="1"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="onScroll()">
     <div class="card">
         <div class="card-header">
-            <div class="row">
-                <h3>Concerts </h3>
-                <input class="float-right" type="text" placeholder="Search..">
+            <div class="row margin-bottom-20">
+                <div class="col-sm-4">
+                    <h3>Concerts</h3>
+                </div>
 
-                <div class="search">
-                <select class="float-right">
-                    <option value="">First optiom</option>
-                    <option value="">First optiom</option>
-                    <option value="">First optiom</option>
-                    <option value="">First optiom</option>
-                </select>
-
-
+                <div class="offset-4 col-sm-4">
+                    <button class="btn btn-concert-theme float-right" (click)="navigateToNewBand()">Create Concert
+                    </button>
                 </div>
             </div>
-
-
+            <div class="row margin-bottom-20">
+                <div class="offset-3 col-sm-6">
+                    <app-search [parentComponent]="'band'"></app-search>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <div class="row">
@@ -38,22 +39,6 @@
                         </div>
                     </div>
                 </ng-container>
-            </div>
-        </div>
-        <div class="card-footer">
-            <div class="row">
-                <div class="col-sm-12 align-content-center">
-                    <div class="col-sm-2">
-                        <i class="fas fa-arrow-left"></i>
-                    </div>
-                    <div class="col-sm-8  align-content-center">
-                        <input type="number">
-                        <button>Go</button>
-                    </div>
-                    <div class="col-sm-2 float-right">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
