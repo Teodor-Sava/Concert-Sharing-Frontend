@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 import {BandsRoutingModule} from './bands-routing.module';
 import {BandsComponent} from './components/bands/bands.component';
 import {BandsDetailsComponent} from './components/bands-details/bands-details.component';
@@ -10,11 +12,14 @@ import {BandConcertStatusComponent} from './components/band-concert-status/band-
 import {BandConcertRequestsComponent} from './components/band-concert-requests/band-concert-requests.component';
 import {BandConcertHistoryComponent} from './components/band-concert-history/band-concert-history.component';
 import {BandsService} from './services/bands.service';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        BandsRoutingModule
+        BandsRoutingModule,
+        InfiniteScrollModule,
+        SharedModule
     ],
     declarations: [BandsComponent,
         BandsDetailsComponent,
