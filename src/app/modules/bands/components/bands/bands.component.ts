@@ -13,6 +13,7 @@ export class BandsComponent implements OnInit {
     currentPage: number;
     lastPage: number;
     showNoMoreOption = true;
+    searchActivated = false;
 
     constructor(private bandsService: BandsService,
                 private router: Router) {
@@ -22,25 +23,28 @@ export class BandsComponent implements OnInit {
         this.getBands();
     }
 
-    getBands(offset?: number) {
-        this.bandsService.getBands(offset).subscribe(response => {
-            if (this.bands) {
+    getBands(offset?: number, searchParams?: string) {
+        this.bandsService.getBands(offset, searchParams).subscribe(response => {
+            if (searchParams && offset) {
                 this.bands = this.bands.concat(response.data);
-                this.bands.map(band => {
-                    console.log(band);
-                });
                 this.currentPage = response.current_page;
                 this.lastPage = response.last_page;
-                console.log(this.currentPage);
-                console.log(this.lastPage);
-                console.log(this.bands);
+            } else if (searchParams) {
+                this.bands = this.bands.concat(response.data);
+                this.currentPage = response.current_page;
+                this.lastPage = response.last_page;
             } else {
-                this.bands = response.data;
-                this.currentPage = response.current_page;
-                this.lastPage = response.last_page;
-                this.bands.map(band => {
-                    console.log(band);
-                });
+                if (this.bands) {
+                    this.bands = this.bands.concat(response.data);
+                    this.currentPage = response.current_page;
+                    this.lastPage = response.last_page;
+
+                } else {
+                    this.bands = response.data;
+                    this.currentPage = response.current_page;
+                    this.lastPage = response.last_page;
+
+                }
             }
         });
     }
@@ -54,10 +58,21 @@ export class BandsComponent implements OnInit {
     }
 
     searchConcert(event) {
-        console.log(event);
+        if (event) {
+            this.searchActivated = true;
+            this.getBands(null, event);
+        } else {
+            this.searchActivated = false;
+            this.getBands( event);
+        }
     }
 
     onScroll() {
+        if (this.searchActivated) {
+            if (this.currentPage + 1 <= this.lastPage) {
+
+            }
+        }
         if (this.currentPage + 1 <= this.lastPage) {
             this.getBands(this.currentPage + 1);
         } else {

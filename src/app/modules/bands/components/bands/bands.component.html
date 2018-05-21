@@ -6,16 +6,20 @@
         <div class="card-header">
             <div class="row margin-bottom-20">
                 <div class="col-sm-4">
-                    <h3>Concerts</h3>
+                    <h3>Bands</h3>
                 </div>
-                <div class="col-sm-4">
-                    <input class="form-control" (keyup)="searchConcert($event.target.value)" type="text" placeholder="Search..">
-                </div>
-                <div class="col-sm-4">
+
+                <div class="offset-4 col-sm-4">
                     <button class="btn btn-concert-theme float-right" (click)="navigateToNewBand()">Create Band</button>
                 </div>
             </div>
+            <div class="row margin-bottom-20">
+                <div class="offset-4 col-sm-4">
+                  <app-search></app-search>
+                </div>
+            </div>
         </div>
+
         <div class="card-body">
             <div class="row">
                 <ng-container *ngFor="let band of bands">

@@ -12,12 +12,14 @@ import {BandConcertStatusComponent} from './components/band-concert-status/band-
 import {BandConcertRequestsComponent} from './components/band-concert-requests/band-concert-requests.component';
 import {BandConcertHistoryComponent} from './components/band-concert-history/band-concert-history.component';
 import {BandsService} from './services/bands.service';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
     imports: [
         CommonModule,
         BandsRoutingModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        SharedModule
     ],
     declarations: [BandsComponent,
         BandsDetailsComponent,
