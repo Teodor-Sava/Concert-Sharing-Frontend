@@ -7,3 +7,7 @@ export const REGISTER_URL = `${apiBaseUrl}/auth/register`;
 export const CONCERTS_URL = `${apiBaseUrl}/concerts`;
 
 export const BANDS_URL = `${apiBaseUrl}/bands`;
+
+export const COUNTRIES_URL = `${apiBaseUrl}/countries`;
+
+export const GENRES_URL = `${apiBaseUrl}/genres`;

@@ -34,6 +34,11 @@ export class SearchComponent implements OnInit {
     }
 
     ngOnInit() {
+
+    }
+
+    getSearchData() {
+        this.showFilter = true;
         this.queryField.valueChanges
             .debounceTime(500)
             .switchMap((query) => {

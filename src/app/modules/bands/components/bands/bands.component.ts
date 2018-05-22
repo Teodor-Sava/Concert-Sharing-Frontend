@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BandsService} from '../../services/bands.service';
-import {Band} from '../../../core/models/band';
+import {Band} from '../../../core/models/data-models';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -55,16 +55,6 @@ export class BandsComponent implements OnInit {
 
     navigateToNewBand() {
         this.router.navigate([this.router.url + '/new']);
-    }
-
-    searchConcert(event) {
-        if (event) {
-            this.searchActivated = true;
-            this.getBands(null, event);
-        } else {
-            this.searchActivated = false;
-            this.getBands( event);
-        }
     }
 
     onScroll() {

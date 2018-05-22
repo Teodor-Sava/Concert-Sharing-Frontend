@@ -11,11 +11,13 @@ import {CreateConcertComponent} from './components/create-concert/create-concert
 import {EditConcertComponent} from './components/edit-concert/edit-concert.component';
 import {ConcertStatusComponent} from './components/concert-status/concert-status.component';
 import {SharedModule} from '../shared/shared.module';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 @NgModule({
     imports: [
         CommonModule,
         ConcertsRoutingModule,
+        InfiniteScrollModule,
         FormsModule,
         SharedModule,
         PaginationModule.forRoot()

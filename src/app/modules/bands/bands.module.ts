@@ -1,7 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 import {BandsRoutingModule} from './bands-routing.module';
 import {BandsComponent} from './components/bands/bands.component';
@@ -13,13 +15,18 @@ import {BandConcertRequestsComponent} from './components/band-concert-requests/b
 import {BandConcertHistoryComponent} from './components/band-concert-history/band-concert-history.component';
 import {BandsService} from './services/bands.service';
 import {SharedModule} from '../shared/shared.module';
+import {BsDatepickerModule} from 'ngx-bootstrap';
 
 @NgModule({
     imports: [
         CommonModule,
         BandsRoutingModule,
         InfiniteScrollModule,
-        SharedModule
+        SharedModule,
+        NgSelectModule,
+        ReactiveFormsModule,
+        FormsModule,
+        BsDatepickerModule.forRoot()
     ],
     declarations: [BandsComponent,
         BandsDetailsComponent,
