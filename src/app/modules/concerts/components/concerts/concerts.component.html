@@ -10,36 +10,45 @@
                 </div>
 
                 <div class="offset-4 col-sm-4">
-                    <button class="btn btn-concert-theme float-right" (click)="navigateToNewBand()">Create Concert
+                    <button class="btn btn-concert-theme float-right" (click)="navigateToNewConcert()">Create Concert
                     </button>
                 </div>
             </div>
             <div class="row margin-bottom-20">
                 <div class="offset-3 col-sm-6">
-                    <app-search [parentComponent]="'band'"></app-search>
+                    <app-search [parentComponent]="'concert'"></app-search>
                 </div>
             </div>
         </div>
         <div class="card-body">
             <div class="row">
                 <ng-container *ngFor="let concert of concerts">
-                    <div class="col-sm-4 margin-bottom-20">
+                    <div class="col-sm-4 margin-bottom-20" (click)="navigateToConcert(concert.id)">
                         <div class="card card-shadow">
                             <img class="card-img-top"
-                                 src="https://imagejournal.org/wp-content/uploads/bb-plugin/cache/23466317216_b99485ba14_o-panorama.jpg"
+                                 src="{{concert.poster_url}}"
                                  alt="Card image cap">
+                            <div class="card-img-overlay">
+                                <h4 class="card-title">Artist</h4>
+                                <h5 class="card-title">{{concert.band.name}}</h5>
+                                <p class="card-text"></p>
+                                <p class="card-text">Date: {{concert.concert_start | date:'fullDate'}}</p>
+                            </div>
                             <div class="card-body">
-                                <h5 class="card-title">Card title<span class="float-right">2000dkk</span></h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of
-                                    the
-                                    card's content.</p>
+                                <h5 class="card-title medium-font">{{concert.name}}<span class="float-right"></span>
+                                </h5>
+                                <p class="card-text">{{concert.short_description | slice : 0:80}} ...</p>
                             </div>
                         </div>
                     </div>
                 </ng-container>
             </div>
+            <ng-container *ngIf="showNoMoreOption">
+                <div [ngClass]="lastPage === currentPage ? 'text-center' : 'loader'">
+                    <p *ngIf="lastPage === currentPage">There are no more concerts</p>
+                </div>
+
+            </ng-container>
         </div>
     </div>
 </div>

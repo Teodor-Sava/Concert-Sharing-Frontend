@@ -1,13 +1,14 @@
 <section class="filter-wrapper">
     <div class="keyword-wrapper">
-        <input class="form-control" [formControl]="queryField" type="text" placeholder="Search for artists..."
+        <input class="form-control" [formControl]="queryField" type="text"
+               placeholder="{{parentComponent ==='band' ? 'Search for artists...' : 'Search for concerts...'}}"
                (focus)="getSearchData()"/>
     </div>
     <ng-container *ngIf="showFilter">
         <ul class="filter-select">
             <ng-container *ngFor="let result of results; let index=index">
                 <li *ngIf="index<10" class="filter-select-list" (click)="navigateToRecord(result)"><img
-                        src="{{result.image_url}}"
+                        src="{{parentComponent ==='band' ?result.image_url : result.poster_url}}"
                         alt=""
                         width="50" height="50">
                     <p class="artist-name">
