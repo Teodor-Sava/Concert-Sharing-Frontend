@@ -1,3 +1,4 @@
-<p>
-  notifications works!
-</p>
+<div *ngIf="notificationService.notification.state" class="{{notificationCssClass(notificationService.notification)}}"
+    >
+    {{notificationService.notification.message}}
+</div>

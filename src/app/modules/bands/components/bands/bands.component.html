@@ -8,14 +8,11 @@
                 <div class="col-sm-4">
                     <h3>Bands</h3>
                 </div>
-
-                <div class="offset-4 col-sm-4">
-                    <button class="btn btn-concert-theme float-right" (click)="navigateToNewBand()">Create Band</button>
+                <div class="col-sm-4">
+                    <app-search [parentComponent]="'band'"></app-search>
                 </div>
-            </div>
-            <div class="row margin-bottom-20">
-                <div class="offset-3 col-sm-6">
-                  <app-search [parentComponent]="'band'"></app-search>
+                <div class="col-sm-4">
+                    <button class="btn btn-concert-theme float-right" (click)="navigateToNewBand()">Create Band</button>
                 </div>
             </div>
         </div>

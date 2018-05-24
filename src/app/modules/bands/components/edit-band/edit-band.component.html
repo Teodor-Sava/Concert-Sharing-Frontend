@@ -10,7 +10,9 @@
 
     <div class="card-body">
       <div class="row">
-        <form [formGroup]="bandForm" class=" offset-1 col-sm-10">
+        <form class="offset-1 col-sm-10"
+              [formGroup]="bandForm"
+              (ngSubmit)="onSubmit(bandForm.value)">
           <div class="form-group row">
             <div class="col-sm-6">
               <input class="form-control" formControlName="image_url" placeholder="Image Url">
@@ -24,8 +26,9 @@
               <input type="text" formControlName="name" class="form-control" placeholder="Name" id="name">
             </div>
             <div class="col-sm-6">
-              <select  class="form-control">
+              <select [formControlName]="country_id" class="form-control">
                 <option value="">Select Country</option>
+                <option *ngFor="let country of countries" value="{{country.id}}">{{country.name}}</option>
               </select>
             </div>
           </div>
@@ -69,7 +72,7 @@
               <button class="btn cancel-button float-right"><i class="fas fa-times"></i> Cancel</button>
             </div>
             <div class="col-sm-6">
-              <button class="btn create-button float-left"><i class="fas fa-check"></i> Create Band
+              <button type="submit" class="btn create-button float-left"><i class="fas fa-check"></i> Create Band
               </button>
             </div>
           </div>
