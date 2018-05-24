@@ -14,6 +14,6 @@ export class CoreService {
     }
 
     public getGenres(): Observable<any> {
-        return this.http.get(URL.COUNTRIES_URL);
+        return this.http.get(URL.GENRES_URL);
     }
 }

@@ -16,12 +16,14 @@ import {BandConcertHistoryComponent} from './components/band-concert-history/ban
 import {BandsService} from './services/bands.service';
 import {SharedModule} from '../shared/shared.module';
 import {BsDatepickerModule} from 'ngx-bootstrap';
+import {CoreModule} from '../core/core.module';
 
 @NgModule({
     imports: [
         CommonModule,
         BandsRoutingModule,
         InfiniteScrollModule,
+        CoreModule,
         SharedModule,
         NgSelectModule,
         ReactiveFormsModule,
