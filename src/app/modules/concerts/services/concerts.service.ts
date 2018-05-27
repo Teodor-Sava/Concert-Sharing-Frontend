@@ -13,8 +13,16 @@ export class ConcertsService {
         return this.http.get(URL.CONCERTS_URL + this.getPage(offset) + this.getSearchParams(searchParam, offset));
     }
 
+    public getConcert(id: number) {
+        return this.http.get(URL.CONCERTS_URL + '/' + id);
+    }
+
     public createConcert(concert): Observable<any> {
-        return ;
+        return this.http.post(URL.CONCERTS_URL, concert);
+    }
+
+    public editConcert(concert): Observable<any> {
+        return this.http.patch(URL.CONCERTS_URL + '/' + concert.id, concert);
     }
 
     public getPage(offset) {

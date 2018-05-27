@@ -12,6 +12,7 @@ import {EditConcertComponent} from './components/edit-concert/edit-concert.compo
 import {ConcertStatusComponent} from './components/concert-status/concert-status.component';
 import {SharedModule} from '../shared/shared.module';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     imports: [
@@ -21,7 +22,10 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
-        PaginationModule.forRoot()
+        PaginationModule.forRoot(),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyD_1swczT2E2f-DZIdjku_BCTMLjdZr04o'
+        })
     ],
     declarations: [ConcertsComponent, ConcertDetailsComponent, CreateConcertComponent, EditConcertComponent, ConcertStatusComponent],
     providers: [ConcertsService]
