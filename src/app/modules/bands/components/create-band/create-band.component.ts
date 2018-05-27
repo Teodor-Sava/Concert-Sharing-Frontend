@@ -41,7 +41,7 @@ export class CreateBandComponent implements OnInit {
             short_description: new FormControl('', Validators.required),
             long_description: new FormControl('', Validators.required),
             band_requests: new FormControl('', Validators.required),
-            band_price: new FormControl('', Validators.required),
+            price: new FormControl('', Validators.required),
             genres: new FormControl([], Validators.required),
         });
     }
@@ -83,7 +83,7 @@ export class CreateBandComponent implements OnInit {
         console.log(this.bandForm);
         if (this.bandForm.valid) {
             console.log('valid');
-            this.bandsService.createBand(formGroup.value).subscribe(response => {
+            this.bandsService.createBand(formGroup).subscribe(response => {
                 if (response === true) {
                     this.notificationService.setNotification('Band was created', NotificationType.SUCCESS);
                     this.router.navigate(['./bands']);

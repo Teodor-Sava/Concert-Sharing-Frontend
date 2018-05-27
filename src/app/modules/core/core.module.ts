@@ -4,6 +4,8 @@ import {NotificationsComponent} from './components/notifications/notifications.c
 import {CoreService} from './services/core.service';
 import {NotificationService} from './services/notification.service';
 import {DisplayFieldErrorsComponent} from './components/display-field-errors/display-field-errors.component';
+import {TokenApiInterceptor} from './interceptors/tokenApi.interceptor';
+import {AuthenticationStatusService} from './services/authentication-status.service';
 
 @NgModule({
     imports: [
@@ -11,7 +13,7 @@ import {DisplayFieldErrorsComponent} from './components/display-field-errors/dis
     ],
     declarations: [NotificationsComponent, DisplayFieldErrorsComponent],
     exports: [NotificationsComponent, DisplayFieldErrorsComponent],
-    providers: [CoreService, NotificationService]
+    providers: [CoreService, NotificationService, TokenApiInterceptor, AuthenticationStatusService]
 })
 export class CoreModule {
 }

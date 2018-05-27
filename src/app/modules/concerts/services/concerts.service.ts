@@ -13,6 +13,10 @@ export class ConcertsService {
         return this.http.get(URL.CONCERTS_URL + this.getPage(offset) + this.getSearchParams(searchParam, offset));
     }
 
+    public createConcert(concert): Observable<any> {
+        return ;
+    }
+
     public getPage(offset) {
         if (offset) {
             return `?page=${offset}`;
