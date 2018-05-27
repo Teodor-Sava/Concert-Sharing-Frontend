@@ -10,6 +10,7 @@ export class AuthenticationService {
     }
 
     login(credentials: { email: string, password: string }): Observable<any> {
+        console.log('cred', credentials);
         return this.http.post(URL.LOGIN_URL, credentials);
     }
 

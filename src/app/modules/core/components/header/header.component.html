@@ -3,11 +3,16 @@
         <div class="inner">
             <h3 class="masthead-brand">ShareIT</h3>
             <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link" routerLink="auth/login" routerLinkActive="'active'">Login</a>
-                <a class="nav-link" routerLink="auth/register" routerLinkActive="'active'">Register</a>
-                <a class="nav-link" href="#">Home</a>
-                <a class="nav-link" routerLink="concerts" routerLinkActive="'active'">Concerts</a>
-                <a class="nav-link" routerLink="bands" routerLinkActive="'active'">Bands</a>
+                <ng-container *ngIf="!isLoggedIn">
+                    <a class="nav-link" routerLink="auth/login" routerLinkActive="'active'">Login</a>
+                    <a class="nav-link" routerLink="auth/register" routerLinkActive="'active'">Register</a>
+                </ng-container>
+                <ng-container *ngIf="isLoggedIn">
+                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" routerLink="concerts" routerLinkActive="'active'">Concerts</a>
+                    <a class="nav-link" routerLink="bands" routerLinkActive="'active'">Bands</a>
+                </ng-container>
+
             </nav>
         </div>
     </header>

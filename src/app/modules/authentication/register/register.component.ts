@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../services/authentication.service';
+import {AuthenticationStatusService} from '../../core/services/authentication-status.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-register',
@@ -12,6 +14,8 @@ export class RegisterComponent implements OnInit {
 
 
     constructor(private authService: AuthenticationService,
+                private authStatusService: AuthenticationStatusService,
+                private router: Router,
                 private fb: FormBuilder) {
         this.registerForm = this.fb.group({
             name: new FormControl('', Validators.required),
@@ -25,7 +29,11 @@ export class RegisterComponent implements OnInit {
 
     onRegister(credentials) {
         this.authService.register(credentials).subscribe(response => {
-            console.log(response);
+            if (response) {
+                console.log(response);
+                this.authStatusService.setLocalStorageToken(response.access_token);
+                this.router.navigate(['./']);
+            }
         });
     }
 }

@@ -4,9 +4,10 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HeaderComponent} from './modules/core/components/header/header.component';
 import {CoreModule} from './modules/core/core.module';
+import {TokenApiInterceptor} from './modules/core/interceptors/tokenApi.interceptor';
 
 
 @NgModule({
@@ -16,11 +17,15 @@ import {CoreModule} from './modules/core/core.module';
     ],
     imports: [
         BrowserModule,
-        CoreModule,
+        HttpClientModule,
         AppRoutingModule,
-        HttpClientModule
+        CoreModule
     ],
-    providers: [],
+    providers: [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenApiInterceptor,
+        multi: true
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule {
