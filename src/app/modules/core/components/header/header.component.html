@@ -3,14 +3,21 @@
         <div class="inner">
             <h3 class="masthead-brand">ShareIT</h3>
             <nav class="nav nav-masthead justify-content-center">
-                <ng-container *ngIf="!(isLoggedIn |async)">
+                <ng-container *ngIf="!isLoggedIn">
                     <a class="nav-link" routerLink="auth/login" routerLinkActive="'active'">Login</a>
                     <a class="nav-link" routerLink="auth/register" routerLinkActive="'active'">Register</a>
                 </ng-container>
-                <ng-container *ngIf="isLoggedIn|async">
-                    <a class="nav-link" href="#">Home</a>
+                <ng-container *ngIf="isLoggedIn">
+                    <a class="nav-link" routerLink="dashboard/concert-history">Home</a>
                     <a class="nav-link" routerLink="concerts" routerLinkActive="'active'">Concerts</a>
                     <a class="nav-link" routerLink="bands" routerLinkActive="'active'">Bands</a>
+                    <a class="nav-link" (click)="showDropdown()">User <i class="fas fa-chevron-down"></i></a>
+                    <div *ngIf="showDropdownMenu" class="dropdown-content">
+                        <a routerLink=""><i class="fas fa-user"></i> User Profile</a>
+                        <a><i class="fas fa-cog"></i> User Settings</a>
+                        <a><i class="fas fa-users-cog"></i> Admin</a>
+                        <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
                 </ng-container>
 
             </nav>

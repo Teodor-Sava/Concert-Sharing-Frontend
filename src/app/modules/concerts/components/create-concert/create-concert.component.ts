@@ -15,6 +15,7 @@ import {Router} from '@angular/router';
 export class CreateConcertComponent implements OnInit {
     concertForm: FormGroup;
     errorMessages: string;
+    selectedFile: File = null;
 
     constructor(private concertsService: ConcertsService,
                 private coreService: CoreService,
@@ -30,49 +31,20 @@ export class CreateConcertComponent implements OnInit {
     createForm() {
         this.concertForm = this.fb.group({
             name: new FormControl('', Validators.required),
-            image_url: new FormControl('', Validators.required),
-            no_members: new FormControl('', Validators.required),
-            country: new FormControl('', Validators.required),
-            founded_at: new FormControl('', Validators.required),
+            total_tickets: new FormControl('', Validators.required),
+            concert_start: new FormControl('', Validators.required),
             short_description: new FormControl('', Validators.required),
-            long_description: new FormControl('', Validators.required),
-            band_requests: new FormControl('', Validators.required),
-            band_price: new FormControl('', Validators.required),
-            genres: new FormControl('', Validators.required),
+            long_description: new FormControl('', Validators.required)
         });
     }
-
-    // getCountries() {
-    //     this.coreService.getCountries().subscribe(response => {
-    //         this.countries = response.data;
-    //     });
-    // }
-    //
-    // getGenres() {
-    //     this.coreService.getGenres().subscribe(response => {
-    //         this.genres = response.data;
-    //     });
-    // }
 
     isFieldInvalid(field) {
         return this.concertForm.get(field).invalid && (this.concertForm.get(field).touched || this.concertForm.get(field).dirty);
     }
 
-    setGenreFormControl(events) {
-        const genreValues = [];
-        console.log(event);
-        for (const event of events) {
-            genreValues.push(event.id);
-        }
-        this.concertForm.controls['genres'].setValue(genreValues);
 
-        console.log(this.concertForm.controls['genres']);
-
-    }
-
-    setCountryFormControl(event) {
-        console.log(event);
-        this.concertForm.controls['country_id'].setValue(event);
+    onFileSelected(event) {
+        this.selectedFile = <File>event.target.files[0];
     }
 
     onSubmit(formGroup) {

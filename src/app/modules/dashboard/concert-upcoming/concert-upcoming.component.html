@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <ng-container *ngIf="concerts; else template">
+            <ng-container *ngFor="let concert of concerts">
+                <div class="col-md-4 col-sm-6 col-xs-12 margin-bottom-20" (click)="goToConcert(concert)">
+                    <div class="card card-shadow">
+                        <img class="card-img-top"
+                             src="{{concert.poster_url}}"
+                             alt="Card image cap">
+                        <div class="card-img-overlay">
+                            <h4 class="card-title">Artist</h4>
+                            <h5 class="card-title">{{concert.band.name}}</h5>
+                            <p class="card-text"></p>
+                            <p class="card-text">Date: {{concert.concert_start | date:'fullDate'}}</p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title medium-font">{{concert.name}}<span class="float-right"></span>
+                            </h5>
+                            <p class="card-text">{{concert.short_description | slice : 0:80}} ...</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+        <ng-template #template>
+            <div class="text-center">
+                <p>You have no concerts on your list</p>
+            </div>
+        </ng-template>
+    </div>
+</div>

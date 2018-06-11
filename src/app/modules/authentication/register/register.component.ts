@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
         this.authService.register(credentials).subscribe(response => {
             if (response) {
                 console.log(response);
-                this.authStatusService.setLocalStorageToken(response.access_token);
+                this.authStatusService.setLocalStorage(response);
                 this.router.navigate(['./']);
             }
         });

@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {BandsService} from '../../services/bands.service';
 import {CoreService} from '../../../core/services/core.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Band} from '../../../core/models/data-models';
 import {NotificationService} from '../../../core/services/notification.service';
 import {NotificationType} from '../../../core/models/notification';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -17,12 +16,14 @@ export class CreateBandComponent implements OnInit {
     genres;
     bandForm: FormGroup;
     errorMessages: Array<string>;
+    selectedFile: File = null;
 
     constructor(private bandsService: BandsService,
                 private coreService: CoreService,
                 private fb: FormBuilder,
                 private notificationService: NotificationService,
-                private router: Router) {
+                private router: Router,
+                private cd: ChangeDetectorRef) {
         this.createForm();
     }
 
@@ -34,10 +35,10 @@ export class CreateBandComponent implements OnInit {
     createForm() {
         this.bandForm = this.fb.group({
             name: new FormControl('', [Validators.required, Validators.min(3)]),
-            image_url: new FormControl('', Validators.required),
             no_members: new FormControl('', Validators.required),
             country_id: new FormControl('', Validators.required),
             founded_at: new FormControl('', Validators.required),
+            image: [null, Validators.required],
             short_description: new FormControl('', Validators.required),
             long_description: new FormControl('', Validators.required),
             band_requests: new FormControl('', Validators.required),
@@ -64,25 +65,35 @@ export class CreateBandComponent implements OnInit {
 
     setGenreFormControl(events) {
         const genreValues = [];
-        console.log(event);
         for (const event of events) {
             genreValues.push(event.id);
         }
         this.bandForm.controls['genres'].setValue(genreValues);
 
-        console.log(this.bandForm.controls['genres']);
-
     }
 
     setCountryFormControl(event) {
-        console.log(event);
         this.bandForm.controls['country_id'].setValue(event);
     }
 
+    onFileSelected(event) {
+        let reader = new FileReader();
+        if (event.target.files && event.target.files.length) {
+            const [file] = event.target.files;
+            reader.readAsDataURL(file);
+
+            reader.onload = () => {
+                this.bandForm.patchValue({
+                    image: reader.result
+                });
+
+                this.cd.markForCheck();
+            };
+        }
+    }
+
     onSubmit(formGroup) {
-        console.log(this.bandForm);
-        if (this.bandForm.valid) {
-            console.log('valid');
+        if (this.bandForm.valid && formGroup['image']) {
             this.bandsService.createBand(formGroup).subscribe(response => {
                 if (response === true) {
                     this.notificationService.setNotification('Band was created', NotificationType.SUCCESS);

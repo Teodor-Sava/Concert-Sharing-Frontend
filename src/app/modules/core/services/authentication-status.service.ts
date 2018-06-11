@@ -3,13 +3,16 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthenticationStatusService {
-    private _isLoggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
+    public _isLoggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
 
     constructor() {
     }
 
-    public setLocalStorageToken(token) {
-        localStorage.setItem('token', token);
+    public setLocalStorage(response) {
+        localStorage.setItem('user_id', response.user.id);
+        localStorage.setItem('user_name', response.user.name);
+        localStorage.setItem('user_email', response.user.email);
+        localStorage.setItem('token', response.access_token);
         this._isLoggedIn.next(true);
     }
 
@@ -21,8 +24,24 @@ export class AuthenticationStatusService {
         return false;
     }
 
+    public getUser() {
+        const user = {
+            'id': localStorage.getItem('user_id'),
+            'email': localStorage.getItem('user_email'),
+            'name': localStorage.getItem('user_name')
+        };
+        return user;
+    }
+
+    public logout() {
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('user_name');
+        localStorage.removeItem('user_email');
+        localStorage.removeItem('token');
+        this._isLoggedIn.next(false);
+    }
+
     public userLoginStatus() {
-        this._isLoggedIn.next(!!this.getToken());
         return this._isLoggedIn.asObservable();
     }
 }

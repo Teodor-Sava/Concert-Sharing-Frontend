@@ -13,6 +13,14 @@ const routes: Routes = [
     {
         path: 'bands',
         loadChildren: 'app/modules/bands/bands.module#BandsModule'
+    },
+    {
+        path: 'users',
+        loadChildren: 'app/modules/user/user.module#UserModule'
+    },
+    {
+        path: 'dashboard',
+        loadChildren: 'app/modules/dashboard/dashboard.module#DashboardModule'
     }
 ];
 

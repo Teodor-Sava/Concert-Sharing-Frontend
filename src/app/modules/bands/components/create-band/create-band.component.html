@@ -14,15 +14,17 @@
                       [formGroup]="bandForm"
                       (ngSubmit)="onSubmit(bandForm.value)">
                     <div class="form-group row">
-                        <div class="col-sm-6">
-                            <input class="form-control" formControlName="image_url" placeholder="Image Url" required>
-                            <app-display-field-errors *ngIf="isFieldInvalid('image_url')"
-                                                      [displayError]="isFieldInvalid('image_url')"
-                                                      [messageError]="'Image URL is required'">
-                            </app-display-field-errors>
-
+                        <div class="col-sm-12">
+                            <input type="file" class="d-none" (change)="onFileSelected($event)" #inputFile>
+                            <button class="btn btn-primary" (click)="inputFile.click()">Upload Image</button>
+                            <span *ngIf="selectedFile" class="justify-content-end"> {{selectedFile.name}} <i
+                                    style="color:#5CB85C"
+                                    class="fas fa-check"></i></span>
                         </div>
-                        <div class="col-sm-6">
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
                            <textarea type="text" class="form-control" formControlName="band_requests"
                                      placeholder="Write what requirements the band has"></textarea>
                             <app-display-field-errors *ngIf="isFieldInvalid('band_requests')"

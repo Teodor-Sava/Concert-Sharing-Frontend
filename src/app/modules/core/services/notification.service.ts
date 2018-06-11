@@ -7,6 +7,7 @@ export class NotificationService {
 
     constructor() {
         this.notification = new Notification();
+        console.log('this.notification');
     }
 
     public setNotification(message: string, type: NotificationType) {
