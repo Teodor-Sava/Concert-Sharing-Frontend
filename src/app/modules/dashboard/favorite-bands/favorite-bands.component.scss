@@ -4,14 +4,16 @@
   background-color: white;
   //color: #ffffff;
 }
+
 .card-footer {
   background-color: white;
 }
+
 //.card-shadow {
 //  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
 //  cursor: pointer;
 //}
-.outside{
+.outside {
   z-index: 999;
 }
 
@@ -38,6 +40,10 @@
   padding: 10px;
 }
 
-.float-flex{
+.float-flex {
   justify-content: flex-end;
+}
+
+.cursor {
+  cursor: pointer;
 }

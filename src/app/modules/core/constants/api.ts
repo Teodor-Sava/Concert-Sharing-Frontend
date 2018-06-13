@@ -17,3 +17,5 @@ export const DASHBOARD_URL = `${CONCERTS_URL}/user/`;
 export const FAVORITE_BANDS_URL = `${apiBaseUrl}/band-favorites/`;
 
 export const USERS_URL = `${apiBaseUrl}/users`;
+
+export const BANDS_ADMIN_URL = `${apiBaseUrl}/admin/bands`;

@@ -5,36 +5,37 @@
                 <div class="col-sm-6 margin-bottom-20">
                     <div class="card-group">
                         <div class="card">
-                            <div
-                            (click)="goToBand(band)">
-                            <div class="card-header card-shadow">
-                                <img class="card-img-top"
-                                     src="{{band.image_url}}"
-                                     alt="Card image cap">
+                            <div class="cursor"
+                                    (click)="goToBand(band)">
+                                <div class="card-header card-shadow">
+                                    <img class="card-img-top"
+                                         src="{{band.image_url}}"
+                                         alt="Card image cap">
+                                </div>
+
+                                <div class="card-body  text-center">
+                                    <h5 class="card-title">{{band.name}}</h5>
+                                    <p class="card-text">{{band.short_description | slice: 0:80 }} ...</p>
+                                </div>
                             </div>
 
-                            <div class="card-body  text-center">
-                                <h5 class="card-title">{{band.name}}</h5>
-                                <p class="card-text">{{band.short_description | slice: 0:80 }} ...</p>
-                            </div>
-                        </div>
-
-                        <div class="card-footer">
-                            <div class="float-right">
-                                <button type="button" class="btn btn-danger"
-                                        (click)="removeBandFromFavorites(band)">Remove from favorites
-                                </button>
+                            <div class="card-footer">
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-danger"
+                                            (click)="removeBandFromFavorites(band)"><i class="fas fa-times"></i> Remove
+                                        from favorites
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </ng-container>
+        </ng-container>
+        <ng-template #template>
+            <div class="text-center">
+                <p>You have no favorite bands on your list</p>
+            </div>
+        </ng-template>
     </div>
-    </ng-container>
-    </ng-container>
-    <ng-template #template>
-        <div class="text-center">
-            <p>You have no favorite bands on your list</p>
-        </div>
-    </ng-template>
-</div>
 </div>

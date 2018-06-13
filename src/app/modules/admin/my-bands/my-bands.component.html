@@ -1,3 +1,50 @@
-<p>
-  my-bands works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card mb-2">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-4 offset-2">
+                            <span>Band</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span>Rejected Requests</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span>Accepted Requests</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <span>Pending Requests</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ng-container *ngFor="let band of bands">
+                        <div (click)="goToRequests(band)" class="row pointer mb-2">
+                            <div class="col-sm-2">
+                                <img
+                                        src="http://igloomusic.co.uk/wp-content/uploads/2014/09/my-band.jpg"
+                                        alt=""
+                                        width="40" height="40">
+                            </div>
+                            <div class="col-sm-4">
+                                <span>{{band.name}}</span>
+                            </div>
+                            <div class="col-sm-2">
+                                <span>{{band.rejected_requests}}</span>
+                            </div>
+                            <div class="col-sm-2">
+                                <span>{{band.accepted_requests}}</span>
+                            </div>
+                            <div class="col-sm-2">
+                                <span>{{band.pending_requests}}</span>
+                            </div>
+                        </div>
+                        <hr/>
+                    </ng-container>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -46,6 +46,7 @@ a:hover {
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
   border-bottom-color: rgba(255, 255, 255, .25);
+  cursor: pointer;
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -102,6 +103,7 @@ a:hover {
   width: 100%;
   cursor: pointer;
   font-weight: 400;
+  text-decoration: none;
   &:hover {
     background-color: rgb(220,220,220);
   }

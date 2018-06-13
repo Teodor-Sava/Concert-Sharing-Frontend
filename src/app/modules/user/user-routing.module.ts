@@ -5,31 +5,21 @@ import {MyConcertsComponent} from '../admin/my-concerts/my-concerts.component';
 import {MySpacesComponent} from '../admin/my-spaces/my-spaces.component';
 import {OverviewComponent} from '../admin/overview/overview.component';
 import {UserProfileComponent} from './components/user-profile/user-profile.component';
+import {MyProfileComponent} from './my-profile/my-profile.component';
+import {SettingsComponent} from './settings/settings.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: OverviewComponent
-    },
-    {
-        path: 'my-bands',
-        component: MyBandsComponent
-    },
-    {
-        path: 'my-concerts',
-        component: MyConcertsComponent
-    },
-    {
-        path: 'my-spaces',
-        component: MySpacesComponent
-    },
     {
         path: 'id/:id',
         component: UserProfileComponent
     },
     {
-        path:'my-profile',
-        component: Us
+        path: 'my-profile',
+        component: MyProfileComponent
+    },
+    {
+        path: 'settings',
+        component: SettingsComponent
     }
 ];
 

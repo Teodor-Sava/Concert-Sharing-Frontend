@@ -4,24 +4,32 @@ import {OverviewComponent} from './overview/overview.component';
 import {MySpacesComponent} from './my-spaces/my-spaces.component';
 import {MyConcertsComponent} from './my-concerts/my-concerts.component';
 import {MyBandsComponent} from './my-bands/my-bands.component';
+import {BandRequestsComponent} from './band-requests/band-requests.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: OverviewComponent
+        component: OverviewComponent,
+        children: [
+            {
+                path: 'spaces',
+                component: MySpacesComponent
+            },
+            {
+                path: 'concerts',
+                component: MyConcertsComponent
+            },
+            {
+                path: 'bands',
+                component: MyBandsComponent
+            },
+            {
+                path: 'bands/id/:id/requests',
+                component: BandRequestsComponent
+            }
+        ]
     },
-    {
-        path: 'spaces',
-        component: MySpacesComponent
-    },
-    {
-        path: 'concerts',
-        component: MyConcertsComponent
-    },
-    {
-        path: 'bands',
-        component: MyBandsComponent
-    }
+
 ];
 
 @NgModule({
