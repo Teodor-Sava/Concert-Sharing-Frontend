@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../services/admin.service';
 import {ActivatedRoute} from '@angular/router';
+import {NotificationService} from '../../core/services/notification.service';
+import {NotificationType} from '../../core/models/notification';
 
 @Component({
     selector: 'app-band-requests',
@@ -12,7 +14,7 @@ export class BandRequestsComponent implements OnInit {
     pending_requests;
     upcomingConcerts;
 
-    constructor(private adminService: AdminService, private activatedRoute: ActivatedRoute) {
+    constructor(private adminService: AdminService, private activatedRoute: ActivatedRoute, public notificationService: NotificationService) {
         this.activatedRoute.params.subscribe(params => {
             this.getBand(params.id);
         });
@@ -45,11 +47,35 @@ export class BandRequestsComponent implements OnInit {
         });
     }
 
-    acceptConcertRequest(concert) {
+    getDoneDealsForBand(id: number) {
 
     }
 
-    declineConcertRequest(concert) {
+    acceptConcertRequest(request) {
+        this.adminService.acceptConcertRequest(request).subscribe(response => {
+            if (response) {
+                if (this.pending_requests.length > 1) {
+                    const indexOfRequest = this.pending_requests.indexOf(request);
+                    this.pending_requests = this.pending_requests.slice(indexOfRequest, indexOfRequest + 1);
+                } else {
+                    this.pending_requests = [];
+                }
+                this.notificationService.setNotification('You have accepted the concerts request', NotificationType.SUCCESS);
+            }
+        });
+    }
 
+    declineConcertRequest(request) {
+        this.adminService.declineConcertRequest(request).subscribe(response => {
+            if (response) {
+                if (this.pending_requests.length > 1) {
+                    const indexOfRequest = this.pending_requests.indexOf(request);
+                    this.pending_requests = this.pending_requests.slice(indexOfRequest, indexOfRequest + 1);
+                } else {
+                    this.pending_requests = [];
+                }
+                this.notificationService.setNotification('You have declined the concerts request', NotificationType.ERROR);
+            }
+        });
     }
 }

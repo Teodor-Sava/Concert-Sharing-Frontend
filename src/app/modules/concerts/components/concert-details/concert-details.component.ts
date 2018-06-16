@@ -45,8 +45,8 @@ export class ConcertDetailsComponent implements OnInit {
                 this.hideBuyTicket = true;
                 this.reviews = response.related_objects.review;
             }
-            this.latitude = parseInt(this.space.lat);
-            this.longitude = parseInt(this.space.lng);
+            this.latitude = Number(this.space.lat);
+            this.longitude = Number(this.space.lng);
             if (this.longitude < 0) {
                 this.longitude = -this.longitude;
             }

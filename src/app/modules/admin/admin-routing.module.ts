@@ -5,6 +5,7 @@ import {MySpacesComponent} from './my-spaces/my-spaces.component';
 import {MyConcertsComponent} from './my-concerts/my-concerts.component';
 import {MyBandsComponent} from './my-bands/my-bands.component';
 import {BandRequestsComponent} from './band-requests/band-requests.component';
+import {ConcertRequestsComponent} from './concert-requests/concert-requests.component';
 
 const routes: Routes = [
     {
@@ -18,6 +19,10 @@ const routes: Routes = [
             {
                 path: 'concerts',
                 component: MyConcertsComponent
+            },
+            {
+                path: 'concerts/id/:id/requests',
+                component: ConcertRequestsComponent
             },
             {
                 path: 'bands',

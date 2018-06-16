@@ -19,3 +19,7 @@ export const FAVORITE_BANDS_URL = `${apiBaseUrl}/band-favorites/`;
 export const USERS_URL = `${apiBaseUrl}/users`;
 
 export const BANDS_ADMIN_URL = `${apiBaseUrl}/admin/bands`;
+
+export const CONCERTS_ADMIN_URL = `${apiBaseUrl}/admin/concerts`;
+
+export const CONCERT_REQUESTS_URL = `${apiBaseUrl}/concert-requests`;

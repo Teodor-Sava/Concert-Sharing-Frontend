@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {SearchService} from '../../services/search.service';
 import {Router} from '@angular/router';
@@ -18,6 +18,8 @@ export class SearchComponent implements OnInit {
     showFilter = false;
     destroy$: Subject<boolean> = new Subject<boolean>();
     @Input() parentComponent: string;
+    @Input() enabledForm?: boolean;
+    @Output() selectedValue ?: EventEmitter<number> = new EventEmitter<number>();
 
     constructor(private searchService: SearchService, private eRef: ElementRef, private router: Router) {
     }
@@ -55,9 +57,15 @@ export class SearchComponent implements OnInit {
             });
     }
 
-    navigateToRecord(result) {
-        console.log(result);
-        this.router.navigate([this.router.url + '/id/', result.id]);
+    selectResult(result) {
+        if (this.enabledForm) {
+            this.selectedValue.emit(result.id);
+            this.showFilter = false;
+            this.results = null;
+            this.queryField.setValue('');
+        } else {
+            this.router.navigate([this.router.url + '/id/', result.id]);
+        }
     }
 }
 

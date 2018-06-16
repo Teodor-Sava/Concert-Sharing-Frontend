@@ -7,7 +7,7 @@
     <ng-container *ngIf="showFilter">
         <ul class="filter-select">
             <ng-container *ngFor="let result of results; let index=index">
-                <li *ngIf="index<10" class="filter-select-list" (click)="navigateToRecord(result)"><img
+                <li *ngIf="index<10" class="filter-select-list" (click)="selectResult(result)"><img
                         src="{{parentComponent ==='band' ?result.image_url : result.poster_url}}"
                         alt=""
                         width="50" height="50">
