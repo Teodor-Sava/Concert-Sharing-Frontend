@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <ng-container>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['concert-history']">Past Concerts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['concert-upcoming']">Upcoming Concerts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['favorite-bands']">Favorite Bands</a>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

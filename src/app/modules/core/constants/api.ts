@@ -11,3 +11,15 @@ export const BANDS_URL = `${apiBaseUrl}/bands`;
 export const COUNTRIES_URL = `${apiBaseUrl}/countries`;
 
 export const GENRES_URL = `${apiBaseUrl}/genres`;
+
+export const DASHBOARD_URL = `${CONCERTS_URL}/user/`;
+
+export const FAVORITE_BANDS_URL = `${apiBaseUrl}/band-favorites/`;
+
+export const USERS_URL = `${apiBaseUrl}/users`;
+
+export const BANDS_ADMIN_URL = `${apiBaseUrl}/admin/bands`;
+
+export const CONCERTS_ADMIN_URL = `${apiBaseUrl}/admin/concerts`;
+
+export const CONCERT_REQUESTS_URL = `${apiBaseUrl}/concert-requests`;

@@ -1,0 +1,178 @@
+<div class="container" *ngIf="concert">
+    <div class="row mb-4">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-text">{{concert.name}} </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-1">
+                        <div class="col-sm-12">
+                            <div class="card-text">
+                                {{concert.short_description}}
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <ng-container *ngIf="acceptedRequestsByTheBand;else templateBand">
+                <div class="row mb-4">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="margin-bottom-40">Accepted requests from Bands </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-1">
+                                    <div class="col-sm-4">
+                                        Band Name
+                                    </div>
+                                    <div class="col-sm-4">
+                                        Price
+                                    </div>
+                                </div>
+                                <hr/>
+                                <ng-container *ngFor="let request of acceptedRequestsByTheBand">
+                                    <div class="row mb-1">
+                                        <div class="col-sm-4">
+                                            {{request.band.name}}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            {{request.band.price}}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <button class="btn btn-success" type="button"
+                                                    (click)="confirmBandForConcert(request.id)"><i
+                                                    class="fas fa-check"></i> Confirm Band
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #templateBand>
+                <div class="row mb-4">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="margin-bottom-40">Confirmed band for the concert</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-1">
+                                    <div class="col-sm-12">
+                                        <div class="card-text">
+                                            {{band.name}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row mb-1">
+                                    <div class="col-sm-12">
+                                        <div class="card-text">
+                                            {{band.short_description}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-container *ngIf="acceptedRequestsByTheSpaceAdmin;else templateSpace">
+                <div class="row mb-4">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="margin-bottom-40">Accepted requests from admin Spaces </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-1">
+                                    <div class="col-sm-4">
+                                        Space Name
+                                    </div>
+                                    <div class="col-sm-4">
+                                        Price
+                                    </div>
+                                </div>
+                                <hr/>
+                                <ng-container *ngFor="let request of acceptedRequestsByTheSpaceAdmin">
+                                    <div class="row mb-1">
+                                        <div class="col-sm-4">
+                                            {{request.space.name}}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            {{request.space.price}}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <button class="btn btn-success"><i class="fas fa-check"></i> Confirm Band
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #templateSpace>
+                <div class="row mb-4">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="margin-bottom-40">Confirmed band for the space</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-1">
+                                    <div class="col-sm-12">
+                                        <div class="card-text">
+                                            {{space.name}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row mb-1">
+                                    <div class="col-sm-12">
+                                        <div class="card-text">
+                                            {{space.description}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-sm-12">
+                                        <agm-map [latitude]="latitude" [longitude]="longitude">
+                                            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                                        </agm-map>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <div class="row mb-4" *ngIf="concert_public">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="margin-bottom-40"> Send Request </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <app-create-concert-requests></app-create-concert-requests>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

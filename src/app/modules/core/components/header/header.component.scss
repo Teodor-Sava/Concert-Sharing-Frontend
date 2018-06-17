@@ -1,4 +1,5 @@
 @import '../../../../../assets/css/color';
+
 a,
 a:focus,
 a:hover {
@@ -15,17 +16,11 @@ a:hover {
   border: .05rem solid #fff;
 }
 
-/*
- * Base structure
- */
-
-
-
 .cover-container {
   width: 100%;
   background: #C4335D;
   color: #fff;
-  box-shadow:  0 0 2rem rgba(0, 0, 0, .5);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, .5);
 }
 
 /*
@@ -33,7 +28,7 @@ a:hover {
  */
 .masthead {
   margin-bottom: 2rem;
-  margin-right: 20px;
+  margin-right: 60px;
 }
 
 .masthead-brand {
@@ -51,6 +46,7 @@ a:hover {
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
   border-bottom-color: rgba(255, 255, 255, .25);
+  cursor: pointer;
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -85,4 +81,30 @@ a:hover {
 
 .mastfoot {
   color: rgba(255, 255, 255, .5);
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+  z-index: 999;
+  top: 68px;
+  right: 10px;
+}
+
+.dropdown-content a {
+  display: block;
+  text-align: center;
+  color: black;
+  padding: 12px 16px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 400;
+  text-decoration: none;
+  &:hover {
+    background-color: rgb(220,220,220);
+  }
 }

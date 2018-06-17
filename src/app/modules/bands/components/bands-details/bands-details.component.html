@@ -1,47 +1,91 @@
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="margin-bottom-40">Concert Name
-        <button class="btn btn-concert-theme float-right"><i class="fas fa-shopping-cart"></i> Buy Ticket
-        </button>
-      </h3>
+<div class="container" *ngIf="band">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="margin-bottom-40">{{band.name}}
+                <button *ngIf="bandIsFavorite" (click)="removeFromFavorites(band)" class="float-right btn btn-warning">
+                    <i class="fas fa-star"></i> Favorite
+                </button>
+                <button *ngIf="!bandIsFavorite" (click)="addToFavorites(band)" class="float-right btn btn-warning"><i
+                        class="far fa-star"></i> Add
+                    Favorites
+                </button>
+            </h3>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6 margin-bottom-20">
+                    <div class="card card-shadow">
+                        <img class="card-img-top"
+                             src="https://img.wennermedia.com/480-width/jimi-hendrix-265cfe18-2512-4cff-bc07-251d1acd7d21.jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h5>Description</h5>
+                    <p>{{band.long_description}}</p>
+                    <p><strong>Founded at: </strong> {{band.founded_at}}</p>
+                    <p><strong>Number of members: </strong> {{band.no_members}}</p>
+                    <p><strong>Genres :</strong>
+                        <span class="" *ngFor="let genre of band.genre;let index = index">
+                            <ng-container *ngIf="index !== band.genre.length-1&& band.genre.length>1;else optional">{{genre.type}}, </ng-container>
+                            <ng-template #optional>{{genre.type}}</ng-template>
+                        </span>
+                    </p>
+                    <p><strong>Country :</strong> {{band.country.name}} </p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-12">
+                    <h5>Band requests</h5>
+                    <p>{{band.band_requests}}</p>
+                </div>
+            </div>
+            <h5 class="text-center mb-3">Upcoming Concerts</h5>
+            <div class="container">
+                <ng-container *ngIf="upcomingConcerts;else noConcerts">
+                    <div class="row mt-3 mb-3">
+                        <div class="col-sm-3">
+                            <h6>Name</h6>
+                        </div>
+                        <div class="col-sm-3">
+                            <h6>Date</h6>
+                        </div>
+                        <div class="col-sm-3">
+                            <h6>Available Tickets</h6>
+                        </div>
+                        <div class="col-sm-3">
+                            <h6>Total Tickets</h6>
+                        </div>
+                    </div>
+                    <ng-container *ngFor="let concert of upcomingConcerts">
+                        <div class="row concert" (click)="goToConcert(concert)">
+                            <!--<div class="concert" (click)="goToConcert(concert)">-->
+                            <div class="col-sm-3">
+                                <span>{{concert.name}}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span>{{concert.concert_start | date:'mediumDate'}}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span>{{concert.available_tickets}}</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <span>{{concert.total_tickets}}</span>
+                            </div>                       <!--</div>-->
+
+                        </div>
+                        <hr/>
+                    </ng-container>
+                </ng-container>
+                <ng-template #noConcerts>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-sm-12">
+                            <p class="text-center card-text">No upcoming concerts</p>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
     </div>
-
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-6 margin-bottom-20">
-          <div class="card card-shadow">
-            <img class="card-img-top"
-                 src="https://img.wennermedia.com/480-width/jimi-hendrix-265cfe18-2512-4cff-bc07-251d1acd7d21.jpg"
-                 alt="Card image cap">
-          </div>
-        </div>
-        <div class="col-6">
-          <h5>Band</h5>
-          <p>It is a long established fact that a reader will be distracted by the readable content of a page
-            when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content here', making it look like
-            readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
-            their default model text, and a search for 'lorem ipsum' will uncover many web sites still in
-            their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on
-            purpose (injected humour and the like).
-
-
-          </p>
-        </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-sm-12">
-          <h5>Concert description</h5>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-            the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-            of type and scrambled it to make a type specimen book. It has survived not only five centuries,
-            but also the leap into electronic typesetting, remaining essentially unchanged. It was
-            popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus PageMaker including versions of
-            Lorem Ipsum.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

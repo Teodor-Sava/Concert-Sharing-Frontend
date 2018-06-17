@@ -13,8 +13,24 @@ export class ConcertsService {
         return this.http.get(URL.CONCERTS_URL + this.getPage(offset) + this.getSearchParams(searchParam, offset));
     }
 
+    public getConcertById(id: number): Observable<any> {
+        return this.http.get(URL.CONCERTS_URL + '/' + id);
+    }
+
     public createConcert(concert): Observable<any> {
-        return ;
+        return this.http.post(URL.CONCERTS_URL, concert);
+    }
+
+    public getConcertReviews(concert): Observable<any> {
+        return this.http.get(URL.CONCERTS_URL + '/' + concert.id + 'reviews');
+    }
+
+    public createReview(concertId, review): Observable<any> {
+        return this.http.post(URL.CONCERTS_URL + '/' + concertId + '/reviews', review);
+    }
+
+    public editConcert(concert): Observable<any> {
+        return this.http.patch(URL.CONCERTS_URL + '/' + concert.id, concert);
     }
 
     public getPage(offset) {

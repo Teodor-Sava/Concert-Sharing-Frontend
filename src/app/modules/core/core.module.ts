@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {NotificationsComponent} from './components/notifications/notifications.component';
 import {CoreService} from './services/core.service';
 import {NotificationService} from './services/notification.service';
-import {DisplayFieldErrorsComponent} from './components/display-field-errors/display-field-errors.component';
+import {DisplayFieldErrorsComponent} from '../shared/components/display-field-errors/display-field-errors.component';
 import {TokenApiInterceptor} from './interceptors/tokenApi.interceptor';
 import {AuthenticationStatusService} from './services/authentication-status.service';
 
@@ -11,8 +11,8 @@ import {AuthenticationStatusService} from './services/authentication-status.serv
     imports: [
         CommonModule
     ],
-    declarations: [NotificationsComponent, DisplayFieldErrorsComponent],
-    exports: [NotificationsComponent, DisplayFieldErrorsComponent],
+    declarations: [NotificationsComponent],
+    exports: [NotificationsComponent],
     providers: [CoreService, NotificationService, TokenApiInterceptor, AuthenticationStatusService]
 })
 export class CoreModule {

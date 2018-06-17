@@ -19,12 +19,28 @@ export class BandsService {
         return this.http.get(URL.BANDS_URL + '/' + id);
     }
 
-    public createBand(band: Band): Observable<any> {
+    public createBand(band): Observable<any> {
         return this.http.post(URL.BANDS_URL, band);
     }
 
     public editBand(band: Band): Observable<any> {
         return this.http.patch(URL.BANDS_URL, band);
+    }
+
+    public getBandFavoriteStatus(id: number): Observable<any> {
+        return this.http.get(URL.FAVORITE_BANDS_URL + 'band/' + id + '/status');
+    }
+
+    public getBandUpcomingConcerts(id: number): Observable<any> {
+        return this.http.get(URL.CONCERTS_URL + '/upcoming/band/' + id);
+    }
+
+    public addToFavorites(id: number): Observable<any> {
+        return this.http.post(URL.FAVORITE_BANDS_URL + 'band/' + id, {});
+    }
+
+    public removeFromFavorites(id: number): Observable<any> {
+        return this.http.delete(URL.FAVORITE_BANDS_URL + 'band/' + id);
     }
 
     private getSearchParams(searchParam, offset) {
