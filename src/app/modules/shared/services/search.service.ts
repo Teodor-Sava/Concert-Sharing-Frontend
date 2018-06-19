@@ -8,6 +8,8 @@ export class SearchService {
     bandUrl = URL.BANDS_URL + '?search=';
     concertUrl = URL.CONCERTS_URL + '?search=';
 
+    spaceUrl = URL.SPACES_URL + '?search=';
+
     constructor(private http: HttpClient) {
     }
 
@@ -21,6 +23,9 @@ export class SearchService {
             case 'concert' : {
                 searchUrl = this.concertUrl + searchQuery;
                 break;
+            }
+            case 'spaces': {
+                searchUrl = this.spaceUrl + searchQuery;
             }
         }
         return this.http.get(searchUrl);

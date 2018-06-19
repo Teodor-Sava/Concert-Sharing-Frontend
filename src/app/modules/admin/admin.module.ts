@@ -13,6 +13,9 @@ import {CreateConcertRequestsComponent} from './create-concert-requests/create-c
 import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
 import {AgmCoreModule} from '@agm/core';
+import {SpaceRequestsComponent} from './space-requests/space-requests.component';
+import * as Keys from '../core/constants/api.keys';
+import { CreateSpaceRequestComponent } from './create-space-request/create-space-request.component';
 
 @NgModule({
     imports: [
@@ -21,10 +24,10 @@ import {AgmCoreModule} from '@agm/core';
         ReactiveFormsModule,
         SharedModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyD_1swczT2E2f-DZIdjku_BCTMLjdZr04o'
+            apiKey: Keys.mapsKey
         })
     ],
-    declarations: [OverviewComponent, MyBandsComponent, MyConcertsComponent, MySpacesComponent, BandRequestsComponent, ConcertRequestsComponent, CreateConcertRequestsComponent],
+    declarations: [OverviewComponent, MyBandsComponent, MyConcertsComponent, MySpacesComponent, BandRequestsComponent, ConcertRequestsComponent, CreateConcertRequestsComponent, SpaceRequestsComponent, CreateSpaceRequestComponent],
     providers: [AdminService]
 })
 

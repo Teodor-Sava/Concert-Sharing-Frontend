@@ -17,7 +17,7 @@ export class EditMyProfileComponent implements OnInit {
     }
 
     createForm() {
-        this.myProfile = this.fb.group({
+        this.myProfileForm = this.fb.group({
             name: new FormControl('', Validators.required),
             email: new FormControl('', Validators.required),
             password: new FormControl('', Validators.required),
@@ -30,9 +30,9 @@ export class EditMyProfileComponent implements OnInit {
         this.getCountries();
     }
 
-    getUserDetails() {
-        this.usersService.getUserProfile();
-    }
+    // getUserDetails() {
+    //     this.usersService.getUserProfile();
+    // }
 
     getCountries() {
         this.coreService.getCountries().subscribe(response => {

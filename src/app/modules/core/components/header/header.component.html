@@ -10,14 +10,14 @@
                 <ng-container *ngIf="isLoggedIn">
                     <a class="nav-link" routerLink="dashboard/concert-history">Home</a>
                     <a class="nav-link" routerLink="concerts" routerLinkActive="'active'">Concerts</a>
+                    <a class="nav-link" routerLink="spaces" routerLinkActive="'active'">Spaces</a>
                     <a class="nav-link" routerLink="bands" routerLinkActive="'active'">Bands</a>
+                    <a class="nav-link" routerLink="admin/bands"><i class="fas fa-users-cog"></i>
+                        Admin</a>
                     <a class="nav-link" (click)="showDropdown()">User <i class="fas fa-chevron-down"></i></a>
                     <div *ngIf="showDropdownMenu" class="dropdown-content">
                         <a routerLink="users/my-profile" (click)="showDropdownMenu=false"><i class="fas fa-user"></i>
                             User Profile</a>
-                        <a (click)="showDropdownMenu=false"><i class="fas fa-cog"></i> User Settings</a>
-                        <a routerLink="admin" (click)="showDropdownMenu=false"><i class="fas fa-users-cog"></i>
-                            Admin</a>
                         <div class="dropdown-divider"></div>
                         <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>

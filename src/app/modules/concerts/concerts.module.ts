@@ -12,8 +12,9 @@ import {EditConcertComponent} from './components/edit-concert/edit-concert.compo
 import {ConcertStatusComponent} from './components/concert-status/concert-status.component';
 import {SharedModule} from '../shared/shared.module';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
-import { AgmCoreModule } from '@agm/core';
-import { ConcertReviewsComponent } from './components/concert-reviews/concert-reviews.component';
+import {AgmCoreModule} from '@agm/core';
+import {ConcertReviewsComponent} from './components/concert-reviews/concert-reviews.component';
+import * as Keys from '../core/constants/api.keys';
 
 @NgModule({
     imports: [
@@ -26,7 +27,7 @@ import { ConcertReviewsComponent } from './components/concert-reviews/concert-re
         BsDatepickerModule.forRoot(),
         PaginationModule.forRoot(),
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyD_1swczT2E2f-DZIdjku_BCTMLjdZr04o'
+            apiKey: Keys.mapsKey
         })
     ],
     declarations: [ConcertsComponent, ConcertDetailsComponent, CreateConcertComponent, EditConcertComponent, ConcertStatusComponent, ConcertReviewsComponent],

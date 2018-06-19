@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="row margin-bottom-20">
+                <div class="col-sm-4">
+                    <h3>Create Space</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <form class="offset-1 col-sm-10"
+                      [formGroup]="spaceForm"
+                      (ngSubmit)="onSubmit(spaceForm.value)">
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" formControlName="name"
+                                   placeholder="Space Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <p class="col-sm-12">Drag the cursor to pick the space location</p>
+                        <div class="col-sm-12">
+                            <agm-map [latitude]="spaceForm.get('lat').value" [longitude]="spaceForm.get('lng').value">
+                                <agm-marker [latitude]="spaceForm.get('lat').value"
+                                            [longitude]="spaceForm.get('lng').value"
+                                            [markerDraggable]="true"
+                                            (dragEnd)="setCoordinates($event)">>
+                                </agm-marker>
+                            </agm-map>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <textarea type="text"
+                                      class="form-control"
+                                      placeholder="Write a description about the band.."
+                                      formControlName="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <button class="btn cancel-button float-right"><i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn create-button float-left"><i class="fas fa-check"></i>
+                                Create Space
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

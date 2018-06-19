@@ -1,0 +1,129 @@
+<div class="container" *ngIf="space">
+    <div class="row mb-4">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="margin-bottom-40">{{space.name}} </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5>Description</h5>
+                            <p>{{space.description | slice:0:60 }} ...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <ng-container *ngIf="upcomingConcerts;else upcomingConcerTemplate">
+                <div class="row mb-4">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="margin-bottom-40"> Upcoming space concerts </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row concert">
+                                            <!--<div class="concert" (click)="goToConcert(concert)">-->
+                                            <div class="col-sm-3">
+                                                <span>Concert</span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <span>Start Date</span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <span>Available Tickets</span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <span>Total Tickets</span>
+                                            </div>                       <!--</div>-->
+
+                                        </div>
+                                        <hr/>
+                                        <ng-container *ngFor="let concert of upcomingConcerts">
+                                            <div class="row concert">
+                                                <!--<div class="concert" (click)="goToConcert(concert)">-->
+                                                <div class="col-sm-3">
+                                                    <span>{{concert.name}}</span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span>{{concert.concert_start | date:'mediumDate'}}</span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span>{{concert.available_tickets}}</span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span>{{concert.total_tickets}}</span>
+                                                </div>                       <!--</div>-->
+
+                                            </div>
+                                            <hr/>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #upcomingConcerTemplate>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5>No upcoming concerts</h5>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-container *ngIf="pending_requests.length>0;else noRequests">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="margin-bottom-40"> Pending Requests </h3>
+                            </div>
+                            <div class="card-body">
+                                <ng-container *ngFor="let request of pending_requests;let i=index">
+                                    <div class="row">
+                                        <div class="col-sm-12 mb-2">
+                                            <h5>{{request.concert.name}}</h5>
+                                            <p>{{request.concert.short_description}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-sm-12">
+                                            <h5>Request message</h5>
+                                            <p>{{request.request_message}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <button class="btn btn-lg btn-danger float-right"
+                                                    (click)="declineSpaceRequest(request)">Decline
+                                            </button>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <button class="btn btn-lg btn-success float-left"
+                                                    (click)="acceptSpaceRequest(request)">Accept
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr *ngIf="i<pending_requests.length-1"/>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #noRequests>
+                <div class="card">
+                    <div class="card-body">
+                        <h5>No requests available right now</h5>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

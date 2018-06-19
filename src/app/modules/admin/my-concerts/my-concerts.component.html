@@ -4,40 +4,60 @@
             <div class="card mb-2">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-sm-4 offset-2">
+                        <div class="col-sm-3">
                             <span>Concert</span>
                         </div>
-                        <div class="col-sm-2">
-                            <span>Rejected Requests</span>
-                        </div>
-                        <div class="col-sm-2">
-                            <span>Accepted Requests</span>
-                        </div>
-                        <div class="col-sm-2">
-                            <span>Pending Requests</span>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <span>Accepted B. Req</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span>Pending B. Req</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span>Rejected B. Req</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span>Accepted S. Req</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span>Pending S. Req</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span>Pending S. Req</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <ng-container *ngFor="let concert of concerts">
                         <div (click)="goToRequests(concert)" class="row pointer mb-2">
-                            <div class="col-sm-2">
-                                <img
-                                        src="http://igloomusic.co.uk/wp-content/uploads/2014/09/my-concert.jpg"
-                                        alt=""
-                                        width="40" height="40">
-                            </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <span>{{concert.name}}</span>
                             </div>
-                            <div class="col-sm-2">
-                                <span>{{concert.rejected_requests}}</span>
-                            </div>
-                            <div class="col-sm-2">
-                                <span>{{concert.accepted_requests}}</span>
-                            </div>
-                            <div class="col-sm-2">
-                                <span>{{concert.pending_requests}}</span>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <span>{{concert.bands_accepted_requests}}</span>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span>{{concert.bands_pending_requests}}</span>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span>{{concert.bands_rejected_requests}}</span>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span>{{concert.spaces_accepted_requests}}</span>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span>{{concert.spaces_pending_requests}}</span>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span>{{concert.spaces_rejected_requests}}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <hr/>

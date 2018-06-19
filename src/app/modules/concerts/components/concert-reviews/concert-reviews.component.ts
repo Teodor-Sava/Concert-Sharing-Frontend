@@ -35,6 +35,7 @@ export class ConcertReviewsComponent implements OnInit {
             this.concertsService.createReview(this.concert.id, formGroup).subscribe(response => {
                     if (response) {
                         this.notificationService.setNotification(response.message, NotificationType.SUCCESS);
+                        this.hideForm.emit(response.review);
                     } else {
                         this.notificationService.setNotification(response.message, NotificationType.ERROR);
                     }

@@ -17,11 +17,12 @@ export class ConcertRequestsComponent implements OnInit {
     longitude;
     concert_public;
     pending_requests;
-    upcomingConcerts;
     acceptedRequestsByTheBand;
     acceptedRequestsByTheSpaceAdmin;
 
-    constructor(private adminService: AdminService, private activatedRoute: ActivatedRoute, public notificationService: NotificationService) {
+    constructor(private adminService: AdminService,
+                private activatedRoute: ActivatedRoute,
+                public notificationService: NotificationService) {
         this.activatedRoute.params.subscribe(params => {
             this.getConcert(params.id);
         });
@@ -35,15 +36,7 @@ export class ConcertRequestsComponent implements OnInit {
             this.concert = response.data;
             if (this.concert.concert_public) {
                 this.concert_public = true;
-            }
-            if (Object.keys(response.related_objects.band).length === 0) {
-                this.getAcceptedRequestsByTheBand(id);
-            } else {
                 this.band = response.related_objects.band;
-            }
-            if (Object.keys(response.related_objects.band).length === 0) {
-                this.getAcceptedRequestBySpaceAdministrator(id);
-            } else {
                 this.space = response.related_objects.space;
                 this.latitude = Number(this.space.lat);
                 this.longitude = Number(this.space.lng);
@@ -53,35 +46,73 @@ export class ConcertRequestsComponent implements OnInit {
                 if (this.space.lng < 0) {
                     this.longitude = -this.longitude;
                 }
+            } else {
+                this.concert_public = false;
+                if (response.related_objects.band === null) {
+                    this.getAcceptedRequestsByTheBand(id);
+                } else {
+                    this.band = response.related_objects.band;
+                }
+                if (response.related_objects.space === null) {
+                    this.getAcceptedRequestBySpaceAdministrator(id);
+                } else {
+                    this.space = response.related_objects.space;
+                    this.latitude = Number(this.space.lat);
+                    this.longitude = Number(this.space.lng);
+                    if (this.space.lat < 0) {
+                        this.latitude = -this.latitude;
+                    }
+                    if (this.space.lng < 0) {
+                        this.longitude = -this.longitude;
+                    }
+                }
             }
         });
     }
 
     getAcceptedRequestsByTheBand(id: number) {
         this.adminService.getAcceptedBandRequestsForConcerts(id).subscribe(response => {
-            if (response) {
+            if (response.length > 0) {
                 this.acceptedRequestsByTheBand = response;
             }
-        }, (error) => {
-            this.notificationService.setNotification(error.error, NotificationType.ERROR);
         });
     }
 
     getAcceptedRequestBySpaceAdministrator(id: number) {
         this.adminService.getAcceptedSpaceRequestsForConcerts(id).subscribe(response => {
-            if (response) {
+            if (response.length > 0) {
+                console.log(this.response);
                 this.acceptedRequestsByTheSpaceAdmin = response;
             }
-        }, (error) => {
-            this.notificationService.setNotification(error.error, NotificationType.ERROR);
         });
     }
 
 
-    confirmBandForConcert(id: number) {
-        this.adminService.confirmBandForConcert(id).subscribe(response => {
+    confirmBandForConcert(request) {
+        this.adminService.confirmBandForConcert(request.id).subscribe(response => {
             if (response) {
-                this.notificationService.setNotification('Band was confirmed for the concert. The concert is public now', NotificationType.SUCCESS);
+                this.acceptedRequestsByTheBand = null;
+                this.band = response.band;
+                this.concert = response.concert;
+                if (response.concert.concert_public) {
+                    this.notificationService.setNotification('Band was confirmed for the concert. Concert is public now .', NotificationType.SUCCESS);
+                } else {
+                    this.notificationService.setNotification('Band was confirmed for the concert.', NotificationType.SUCCESS);
+                }
+            }
+        });
+    }
+
+    confirmSpaceForConcert(request) {
+        this.adminService.confirmSpaceForConcert(request.id).subscribe(response => {
+            if (response) {
+                this.acceptedRequestsByTheSpaceAdmin = null;
+                this.space = response.space;
+                if (response.concert.concert_public) {
+                    this.notificationService.setNotification('Space was confirmed for the concert. Concert is public now .', NotificationType.SUCCESS);
+                } else {
+                    this.notificationService.setNotification('Space was confirmed for the concert.', NotificationType.SUCCESS);
+                }
             }
         });
     }

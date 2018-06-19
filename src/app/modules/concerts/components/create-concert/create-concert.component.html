@@ -10,7 +10,7 @@
 
         <div class="card-body">
             <div class="row">
-                <form [formGroup]="concertForm" class=" offset-1 col-sm-10">
+                <form [formGroup]="concertForm" (ngSubmit)="onSubmit(concertForm.value)" class=" offset-1 col-sm-10">
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input type="file" class="d-none" (change)="onFileSelected($event)" #inputFile>
@@ -34,10 +34,10 @@
                         </div>
                         <div class="col-sm-6">
                             <input type="text"
-                                   placeholder="Founded At"
+                                   placeholder="Concert Start At"
                                    class="form-control"
                                    bsDatepicker
-                                   formControlName="myDateFull"
+                                   formControlName="concert_start"
                                    [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY, h:mm:ss a' }">
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="col-sm-6">
                             <button type="submit" class="btn create-button float-left"><i class="fas fa-check"></i>
-                                Create Band
+                                Create Concert
                             </button>
                         </div>
                     </div>
