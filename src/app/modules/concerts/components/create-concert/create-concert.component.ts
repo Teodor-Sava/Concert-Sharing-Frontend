@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CoreService} from '../../../core/services/core.service';
 import {BandsService} from '../../../bands/services/bands.service';
@@ -21,7 +21,8 @@ export class CreateConcertComponent implements OnInit {
                 private coreService: CoreService,
                 private fb: FormBuilder,
                 public notificationService: NotificationService,
-                private router: Router) {
+                private router: Router,
+                private cd: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -34,7 +35,8 @@ export class CreateConcertComponent implements OnInit {
             total_tickets: new FormControl('', Validators.required),
             concert_start: new FormControl('', Validators.required),
             short_description: new FormControl('', Validators.required),
-            long_description: new FormControl('', Validators.required)
+            long_description: new FormControl('', Validators.required),
+            poster_url: [null, Validators.required]
         });
     }
 
@@ -44,17 +46,28 @@ export class CreateConcertComponent implements OnInit {
 
 
     onFileSelected(event) {
-        this.selectedFile = <File>event.target.files[0];
+        let reader = new FileReader();
+        if (event.target.files && event.target.files.length) {
+            const [file] = event.target.files;
+            reader.readAsDataURL(file);
+
+            reader.onload = () => {
+                this.concertForm.patchValue({
+                    poster_url: reader.result
+                });
+
+                this.cd.markForCheck();
+            };
+        }
     }
 
     onSubmit(formGroup) {
         console.log(this.concertForm);
-        if (this.concertForm.valid) {
-            console.log('valid');
-            this.concertsService.createConcert(formGroup.value).subscribe(response => {
-                if (response === true) {
-                    this.notificationService.setNotification('Band was created', NotificationType.SUCCESS);
-                    this.router.navigate(['./bands']);
+        if (this.concertForm.valid && formGroup['poster_url']) {
+            this.concertsService.createConcert(formGroup).subscribe(response => {
+                if (response) {
+                    this.notificationService.setNotification('Concert was created', NotificationType.SUCCESS);
+                    this.router.navigate([`./admin/concerts/id/${response.id}/requests`]);
                 } else {
                     this.errorMessages = response.errors;
                 }

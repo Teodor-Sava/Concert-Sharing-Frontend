@@ -25,7 +25,7 @@
                             <img class="card-img-top"
                                  src="{{concert.poster_url}}"
                                  alt="Card image cap">
-                            <div class="card-img-overlay">
+                            <div *ngIf="concert.band" class="card-img-overlay">
                                 <h4 class="card-title">Artist</h4>
                                 <h5 class="card-title">{{concert.band.name}}</h5>
                                 <p class="card-text"></p>

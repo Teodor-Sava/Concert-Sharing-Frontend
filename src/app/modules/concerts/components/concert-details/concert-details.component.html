@@ -13,7 +13,7 @@
                 <div class="col-sm-6 margin-bottom-20">
                     <div class="card card-shadow">
                         <img class="card-img-top"
-                             src="https://img.wennermedia.com/480-width/jimi-hendrix-265cfe18-2512-4cff-bc07-251d1acd7d21.jpg"
+                             src="{{concert.poster_url}}"
                              alt="Card image cap">
                     </div>
                 </div>
@@ -39,7 +39,20 @@
                         <h5>Space Description</h5>
                         <p>{{space.description}}</p>
                         <agm-map [latitude]="latitude" [longitude]="longitude">
-                            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                            <agm-marker [latitude]="latitude" [longitude]="longitude">
+                                <agm-info-window>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h5 class="card-text">{{space.name}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p class="card-text">{{space.description}}</p>
+                                        </div>
+                                    </div>
+                                </agm-info-window>
+                            </agm-marker>
                         </agm-map>
                     </div>
                 </div>
@@ -53,7 +66,10 @@
                                 Add Review
                             </button>
                         </h5>
-                        <app-concert-reviews [concert]="concert" *ngIf="enableReviewForm"></app-concert-reviews>
+                        <app-concert-reviews (hideForm)="hideForm($event)"
+                                             [concert]="concert"
+                                             *ngIf="enableReviewForm">
+                        </app-concert-reviews>
                         <ng-container *ngFor="let review of reviews">
                             <div class="card mb-2">
                                 <div class="card-header">

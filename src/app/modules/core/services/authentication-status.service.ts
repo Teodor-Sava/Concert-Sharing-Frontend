@@ -14,6 +14,7 @@ export class AuthenticationStatusService {
         localStorage.setItem('user_email', response.user.email);
         localStorage.setItem('token', response.access_token);
         this._isLoggedIn.next(true);
+        location.reload();
     }
 
     public getToken() {

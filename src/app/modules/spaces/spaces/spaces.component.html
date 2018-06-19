@@ -1,0 +1,45 @@
+<div class="container" infiniteScroll
+     [infiniteScrollDistance]="1"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="onScroll()">
+    <div class="card">
+        <div class="card-header">
+            <div class="row margin-bottom-20">
+                <div class="col-sm-4">
+                    <h3>Spaces</h3>
+                </div>
+                <div class="col-sm-4">
+                    <app-search [parentComponent]="'spaces'"></app-search>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-concert-theme float-right" (click)="navigateToNewSpace()">Create space
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <ng-container *ngFor="let space of spaces">
+                    <div class="col-sm-4 margin-bottom-20" (click)="navigateToSpace(space.id)">
+                        <div class="card card-shadow">
+                            <img class="card-img-top"
+                                 src="https://www.gso.se/wp-content/uploads/2016/01/goteborgskonserthus-krabbanpagotaplatsen.jpg"
+                                 alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title medium-font">{{space.name}}<span class="float-right"></span>
+                                </h5>
+                                <p class="card-text">{{space.description | slice : 0:80}} ...</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <ng-container *ngIf="showNoMoreOption">
+                <div [ngClass]="lastPage === currentPage ? 'text-center' : 'loader'">
+                    <p *ngIf="lastPage === currentPage">There are no more spaces</p>
+                </div>
+
+            </ng-container>
+        </div>
+    </div>
+</div>

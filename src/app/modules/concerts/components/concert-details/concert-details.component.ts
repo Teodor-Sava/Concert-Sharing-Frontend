@@ -63,4 +63,8 @@ export class ConcertDetailsComponent implements OnInit {
     showReviewsForm() {
         this.enableReviewForm = true;
     }
+
+    hideForm(){
+        this.enableReviewForm = true;
+    }
 }

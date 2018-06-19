@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AdminService} from '../services/admin.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '../../core/services/notification.service';
-import {Band} from '../../core/models/data-models';
 import {NotificationType} from '../../core/models/notification';
 
 @Component({
@@ -12,6 +11,8 @@ import {NotificationType} from '../../core/models/notification';
 })
 export class CreateConcertRequestsComponent implements OnInit {
     bandRequestForm: FormGroup;
+    selectedBand;
+    @Input() id: number;
     @Input() requestType: string;
     @Output() formSubmitted = new EventEmitter<boolean>();
 
@@ -32,17 +33,23 @@ export class CreateConcertRequestsComponent implements OnInit {
         });
     }
 
-    setFormBand(id: number) {
-        this.bandRequestForm.controls['band_id'].setValue(id);
+    setFormBand(event) {
+        this.selectedBand = event;
+        this.bandRequestForm.controls['band_id'].setValue(event.id);
+        this.bandRequestForm.controls['concert_id'].setValue(this.id);
         console.log(this.bandRequestForm.value);
     }
 
     onSubmit(values) {
+        console.log(values);
+        console.log(this.bandRequestForm);
         if (this.bandRequestForm.valid) {
             this.adminService.createBandRequest(values).subscribe(response => {
                 if (response) {
                     this.notificationService.setNotification('A request has been sent to the band', NotificationType.SUCCESS);
                     this.formSubmitted.next(true);
+                    this.selectedBand = null;
+                    this.bandRequestForm.reset();
                 }
             });
         }

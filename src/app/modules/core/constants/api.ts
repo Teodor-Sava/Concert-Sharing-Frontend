@@ -6,6 +6,8 @@ export const REGISTER_URL = `${apiBaseUrl}/auth/register`;
 
 export const CONCERTS_URL = `${apiBaseUrl}/concerts`;
 
+export const SPACES_URL = `${apiBaseUrl}/spaces`;
+
 export const BANDS_URL = `${apiBaseUrl}/bands`;
 
 export const COUNTRIES_URL = `${apiBaseUrl}/countries`;
@@ -22,4 +24,8 @@ export const BANDS_ADMIN_URL = `${apiBaseUrl}/admin/bands`;
 
 export const CONCERTS_ADMIN_URL = `${apiBaseUrl}/admin/concerts`;
 
+export const SPACES_ADMIN_URL = `${apiBaseUrl}/admin/spaces`;
+
 export const CONCERT_REQUESTS_URL = `${apiBaseUrl}/concert-requests`;
+
+export const SPACE_REQUESTS_URL = `${apiBaseUrl}/space-requests`;

@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit {
     queryField: FormControl = new FormControl();
     showFilter = false;
     destroy$: Subject<boolean> = new Subject<boolean>();
+    placeHolder;
     @Input() parentComponent: string;
     @Input() enabledForm?: boolean;
     @Output() selectedValue ?: EventEmitter<number> = new EventEmitter<number>();
@@ -36,7 +37,7 @@ export class SearchComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.placeHolder = `Search for ${this.parentComponent}`;
     }
 
     getSearchData() {
@@ -59,7 +60,7 @@ export class SearchComponent implements OnInit {
 
     selectResult(result) {
         if (this.enabledForm) {
-            this.selectedValue.emit(result.id);
+            this.selectedValue.emit(result);
             this.showFilter = false;
             this.results = null;
             this.queryField.setValue('');

@@ -1,7 +1,7 @@
 <section class="filter-wrapper">
     <div class="keyword-wrapper">
         <input class="form-control" [formControl]="queryField" type="text"
-               placeholder="{{parentComponent ==='band' ? 'Search for artists...' : 'Search for concerts...'}}"
+               placeholder="{{placeHolder}}"
                (focus)="getSearchData()"/>
     </div>
     <ng-container *ngIf="showFilter">

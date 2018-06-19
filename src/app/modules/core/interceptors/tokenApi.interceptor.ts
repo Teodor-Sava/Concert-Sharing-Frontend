@@ -15,10 +15,9 @@ export class TokenApiInterceptor implements HttpInterceptor {
     constructor(public authStatusService: AuthenticationStatusService) {
     }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {;
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         this.token = this.authStatusService.getToken();
         if (this.token) {
-            console.log(this.token);
             const clonnedRequest = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${this.token}`

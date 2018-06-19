@@ -15,6 +15,10 @@ const routes: Routes = [
         loadChildren: 'app/modules/bands/bands.module#BandsModule'
     },
     {
+        path: 'spaces',
+        loadChildren: 'app/modules/spaces/spaces.module#SpacesModule'
+    },
+    {
         path: 'users',
         loadChildren: 'app/modules/user/user.module#UserModule'
     },
